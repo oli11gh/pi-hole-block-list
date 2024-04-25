@@ -1,29 +1,29 @@
-name: Generate and Upload Zip Release
+# name: Generate and Upload Zip Release
 
-on: push
+# on: push
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+#    steps:
+#    - name: Checkout repository
+#      uses: actions/checkout@v2
 
-    - name: Download hosts
-      run: curl -o ads.txt https://blocklist.oli11gh.top/f/ads.txt
+#    - name: Download hosts
+#      run: curl -o ads.txt https://blocklist.oli11gh.top/f/ads.txt
 
-    - name: Create zip file
-      run: zip backup-$(date +"%d.%m.%y").zip ads.txt
+#    - name: Create zip file
+#      run: zip backup-$(date +"%d.%m.%y").zip ads.txt
 
-    - name: Generate ZIP
-      id: filename
-      run: echo "::set-output name=filename::backup-$(date +"%d.%m.%y").zip"
+#    - name: Generate ZIP
+#      id: filename
+#      run: echo "::set-output name=filename::backup-$(date +"%d.%m.%y").zip"
 
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          ${{ steps.filename.outputs.filename }}
-        token: ${{ secrets.TOKEN }}
-        tag_name: v0.1
+#    - name: Release
+#      uses: softprops/action-gh-release@v1
+#      with:
+#        files: |
+#          ${{ steps.filename.outputs.filename }}
+#        token: ${{ secrets.TOKEN }}
+#        tag_name: v0.1
