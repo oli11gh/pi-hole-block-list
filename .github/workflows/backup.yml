@@ -15,10 +15,15 @@ jobs:
 
     - name: Create zip file
       run: zip $(date +"%d.%m.%y").zip ads.txt
+
+    - name: Generate filename
+      id: filename
+      run: echo "::set-output name=filename::$(date +"%d.%m.%y").zip"
+
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-         ./$(date +"%d.%m.%y").zip
+          ${{ steps.filename.outputs.filename }}
         token: ${{ secrets.TOKEN }}
         tag_name: v0.1
