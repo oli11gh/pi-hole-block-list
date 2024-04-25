@@ -15,15 +15,10 @@ jobs:
 
     - name: Create zip file
       run: zip $(date +"%d.%m.%y").zip ads.txt
-
-    - name: Upload zip file to release
-      id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./$(date +"%d.%m.%y").zip
-        asset_name: $(date +"%d.%m.%y").zip
-        asset_content_type: application/zip
+        files: |
+         ./$(date +"%d.%m.%y").zip
+        token: ${{ secrets.TOKEN }}
         tag_name: v0.1
