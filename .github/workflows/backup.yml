@@ -1,34 +1,39 @@
-name: Backup Blocklist
+name: Generate and Upload Zip Release
 
 on: push
 
 jobs:
-  backup_files:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Download Files
-      run: |
-        mkdir -p backup
-        curl -o backup/ads.txt https://blocklist.oli11gh.top/f/ads.txt
-        curl -o backup/ads-2.txt https://blocklist.oli11gh.top/f/ads-2.txt
-        curl -o backup/ads-3.txt https://blocklist.oli11gh.top/f/ad-s3.txt
-        curl -o backup/gen.txt https://blocklist.oli11gh.top/f/gen.txt
+    - name: Download ads.txt
+      run: curl -o ads.txt https://blocklist.oli11gh.top/f/ads.txt
 
-    - name: Create ZIP Archive
-      run: |
-        cd backup
-        zip -r "$(date +"%y.%m.%d").zip" ./*.txt
+    - name: Create zip file
+      run: zip $(date +"%d.%m.%y").zip ads.txt
 
-    - name: Upload ZIP to Releases
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: ${{ github.event.repository.releases_url }}
-        asset_path: ./backup/$(date +"%y.%m.%d").zip
-        asset_name: $(date +"%y.%m.%d").zip
-        asset_content_type: application/zip
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      with:
+        tag_name: v0.1
+        release_name: Release v0.1
+        draft: false
+        prerelease: false
+
+    - name: Upload zip file to release
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./$(date +"%d.%m.%y").zip
+        asset_name: $(date +"%d.%m.%y").zip
+        asset_content_type: application/zip
