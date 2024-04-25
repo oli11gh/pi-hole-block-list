@@ -1,9 +1,6 @@
 name: Backup Blocklist
 
-#on: push
-on:
-  schedule:
-    - cron: '0 */6 * * *'
+on: push
 
 jobs:
   backup_files:
@@ -15,25 +12,23 @@ jobs:
 
     - name: Download Files
       run: |
+        mkdir -p backup
         curl -o backup/ads.txt https://blocklist.oli11gh.top/f/ads.txt
         curl -o backup/ads-2.txt https://blocklist.oli11gh.top/f/ads-2.txt
         curl -o backup/ads-3.txt https://blocklist.oli11gh.top/f/ad-s3.txt
         curl -o backup/gen.txt https://blocklist.oli11gh.top/f/gen.txt
-        curl -o backup/gen-2.txt https://blocklist.oli11gh.top/f/gen-2.txt
-        curl -o backup/gen-3.txt https://blocklist.oli11gh.top/f/gen-3.txt
-        curl -o backup/gen-4.txt https://blocklist.oli11gh.top/f/gen-4.txt
-        curl -o backup/gen-5.txt https://blocklist.oli11gh.top/f/gen-5.txt
-        curl -o backup/other-junk.txt https://blocklist.oli11gh.top/f/other-junk.txt
-        curl -o backup/porn.txt https://blocklist.oli11gh.top/f/porn.txt
-        curl -o backup/porn-2.txt https://blocklist.oli11gh.top/f/porn-2.txt
-        curl -o backup/porn-3.txt https://blocklist.oli11gh.top/f/porn-3.txt
 
-    - name: Commit and Push Changes
+    - name: Create ZIP Archive
+      run: |
+        cd backup
+        zip -r "$(date +"%y.%m.%d").zip" ./*.txt
+
+    - name: Upload ZIP to Releases
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ github.event.repository.releases_url }}
+        asset_path: ./backup/$(date +"%y.%m.%d").zip
+        asset_name: $(date +"%y.%m.%d").zip
+        asset_content_type: application/zip
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      run: |
-        git config --local user.email ${{ secrets.EMAIL }}
-        git config --local user.name "Backuper"
-        git add .
-        git commit -m "Create blocklist backup"
-        git push
