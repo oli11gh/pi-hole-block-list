@@ -10,15 +10,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Download ads.txt
+    - name: Download hosts
       run: curl -o ads.txt https://blocklist.oli11gh.top/f/ads.txt
 
     - name: Create zip file
-      run: zip $(date +"%d.%m.%y").zip ads.txt
+      run: zip backup-$(date +"%d.%m.%y").zip ads.txt
 
-    - name: Generate filename
+    - name: Generate ZIP
       id: filename
-      run: echo "::set-output name=filename::$(date +"%d.%m.%y").zip"
+      run: echo "::set-output name=filename::backup-$(date +"%d.%m.%y").zip"
 
     - name: Release
       uses: softprops/action-gh-release@v1
