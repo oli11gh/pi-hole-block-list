@@ -26,3 +26,4 @@ jobs:
         asset_path: ./$(date +"%d.%m.%y").zip
         asset_name: $(date +"%d.%m.%y").zip
         asset_content_type: application/zip
+        tag_name: v0.1
