@@ -25,8 +25,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        mkdir -p hosts
-        cp -r f/. hosts
         git add hosts
         git commit -m "Generate hosts"
         git push
