@@ -23,8 +23,10 @@ jobs:
 
     - name: Upload Files
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
       run: |
+        git config --local user.email ${{ secrets.EMAIL }}
+        git config --local user.name "Backuper"
         git add hosts
         git commit -m "Generate hosts"
         git push
