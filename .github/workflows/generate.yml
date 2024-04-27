@@ -1,6 +1,9 @@
-name: Generator Blocklist
+name: Generate Blocklist
 
-on: push
+# on: push
+on:
+  schedule:
+    - cron: '0 */2 * * *'
 
 jobs:
   backup_files:
