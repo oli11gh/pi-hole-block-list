@@ -6,8 +6,6 @@
 0.0.0.0 www.cda.pl
 0.0.0.0 kryptex.com
 0.0.0.0 www.kryptex.com
-0.0.0.0 vape.gg
-0.0.0.0 www.vape.gg
 0.0.0.0 nicehash.com
 0.0.0.0 www.nicehash.com
 0.0.0.0 komputerswiat.pl
@@ -15,4 +13,11 @@
 0.0.0.0 gemius.pl
 0.0.0.0 unmineable.com
 0.0.0.0 binance.com
-0.0.0.0 zpool.ca
+0.0.0.0 trycloudflare.com
+0.0.0.0 t.co
+0.0.0.0 giphy.com
+0.0.0.0	media0.giphy.com
+0.0.0.0	media1.giphy.com
+0.0.0.0 media2.giphy.com
+0.0.0.0 media3.giphy.com
+0.0.0.0 media.tenor.co
