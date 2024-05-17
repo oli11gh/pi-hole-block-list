@@ -441,6 +441,9 @@
 0.0.0.0 tracking.acba.pl
 0.0.0.0 hasxrp.com
 0.0.0.0 ads.coingecko.com
+0.0.0.0 koalicjaobywatelska.pl
+0.0.0.0 100konkretow.pl
+0.0.0.0 platforma.org
 0.0.0.0 000.0x1f4b0.com
 0.0.0.0 001.0x1f4b0.com
 0.0.0.0 002.0x1f4b0.com
