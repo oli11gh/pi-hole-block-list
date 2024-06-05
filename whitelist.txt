@@ -21,3 +21,5 @@
 0.0.0.0 media2.giphy.com
 0.0.0.0 media3.giphy.com
 0.0.0.0 media.tenor.co
+0.0.0.0 discord.com
+0.0.0.0 click.discord.com
