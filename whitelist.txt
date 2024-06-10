@@ -2,8 +2,6 @@
 0.0.0.0 urlek.pl
 0.0.0.0 oli11gh.top
 0.0.0.0 chomikuj.pl
-0.0.0.0 cda.pl
-0.0.0.0 www.cda.pl
 0.0.0.0 kryptex.com
 0.0.0.0 www.kryptex.com
 0.0.0.0 nicehash.com
@@ -23,3 +21,6 @@
 0.0.0.0 media.tenor.co
 0.0.0.0 discord.com
 0.0.0.0 click.discord.com
+0.0.0.0 chatgpt.com
+0.0.0.0 www.cda.pl
+0.0.0.0 cda.pl
